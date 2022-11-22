@@ -1,23 +1,18 @@
-from controllers import DatabaseController
-
-
-def databaseControllerExample():
-    databaseController = DatabaseController.DatabaseController('./data/test.txt')
-
-    data = databaseController.getEntries()
-
-    print(data)
-
-    preco = 520.99
-    editora = 'Editora'
-    nome = 'Nome do Livro'
-
-    databaseController.saveEntry(f'{nome},{editora},{preco}')
-
-    data = databaseController.getEntries()
-
-    print(data)
-
+from Router import Router
 
 if __name__ == '__main__':
-    databaseControllerExample()
+    print(r"""
+    ═╬══════════════════════════════════════════════════════════════════════════════════════════╬═
+     ║      ____          __       ___                  __                                      ║
+     ║     /\  _`\    __ /\ \     /\_ \    __          /\ \__                                   ║
+     ║     \ \ \L\ \ /\_\\ \ \____\//\ \  /\_\     ___ \ \ ,_\     __     ___      __           ║
+     ║      \ \  _ <'\/\ \\ \ '__`\ \ \ \ \/\ \   / __`\\ \ \/   /'__`\  /'___\  /'__`\         ║
+     ║       \ \ \L\ \\ \ \\ \ \L\ \ \_\ \_\ \ \ /\ \L\ \\ \ \_ /\  __/ /\ \__/ /\ \L\.\_       ║
+     ║        \ \____/ \ \_\\ \_,__/ /\____\\ \_\\ \____/ \ \__\\ \____\\ \____\\ \__/.\_\      ║
+     ║         \/___/   \/_/ \/___/  \/____/ \/_/ \/___/   \/__/ \/____/ \/____/ \/__/\/_/      ║
+    ═╬══════════════════════════════════════════════════════════════════════════════════════════╬═
+    """)
+
+    routerController = Router()
+
+    routerController.changePage('index')
