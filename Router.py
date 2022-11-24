@@ -1,12 +1,11 @@
 from controllers.LoginController import LoginController
-from infra.PrintClient import PrintClient
 from views.LoginView import LoginView
 
 
 class Router:
     __loginController: 'LoginController'
 
-    def __init__(self):
+    def __init__(self, printGenerator):
         self.__currentPage = None
         self.__lastPage = None
 
@@ -21,9 +20,11 @@ class Router:
             'sobre': 7
         }
 
-        self.__loginController = LoginController()
+        self.__printGenerator = printGenerator
 
-        self.loginView = LoginView(self.__loginController)
+        self.__loginController = LoginController(printGenerator)
+
+        self.loginView = LoginView(self.__loginController, printGenerator)
 
     def getCurrentPage(self):
         return self.__currentPage
@@ -35,7 +36,7 @@ class Router:
         newPage = self.__pages.get(pageName)
 
         if not isinstance(newPage, int) or 0 > newPage > 7:
-            PrintClient.printError('Página Não Encontrada')
+            self.__printGenerator.printError('Página Não Encontrada')
 
         self.__lastPage = self.__currentPage
         self.__currentPage = newPage
@@ -43,7 +44,7 @@ class Router:
         self.renderPage()
 
     def renderPage(self):
-        PrintClient.printSpace()
+        self.__printGenerator.printSpace()
 
         if self.__currentPage == self.__pages.get('login'):
             self.loginView.printLogin()
@@ -111,10 +112,11 @@ class Router:
         if self.__loginController.isUserLoggedIn():
             allPages.extend(loggedInPages)
 
-        PrintClient.printOptions('Escolha uma Página (digite o comando entre [colchetes] abaixo)', allPages)
+        self.__printGenerator.printOptions(
+            'Escolha uma Página (digite o comando entre [colchetes] abaixo)', allPages)
 
         newPage = input('> ')
 
-        PrintClient.printSpace()
+        self.__printGenerator.printSpace()
 
         self.changePage(newPage)

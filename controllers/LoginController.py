@@ -1,8 +1,5 @@
-from infra.PrintClient import PrintClient
-
-
 class LoginController:
-    def __init__(self):
+    def __init__(self, printGenerator):
         self.__user = None
 
         self.__users = [
@@ -15,6 +12,8 @@ class LoginController:
                 'password': '1234'
             }
         ]
+
+        self.__printGenerator = printGenerator
 
     def getUserLogin(self):
         return self.__user
@@ -33,7 +32,5 @@ class LoginController:
 
             return self.__user
         except StopIteration:
-            PrintClient.printError("Não foi possível encontrar\no usuário ou senha digitados")
-
-
-
+            self.__printGenerator.printError(
+                "Não foi possível encontrar\no usuário ou senha digitados")
