@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from controllers.LoginController import LoginController
 
-from infra.PrintGenerator import PrintGenerator
+from infra.PrintClient import PrintClient
 
 
 class LoginView:
@@ -15,7 +15,7 @@ class LoginView:
         self.__loginController = loginController
 
     def printLogin(self):
-        PrintGenerator.printHeader("Faça seu Login")
+        PrintClient.printHeader("Faça seu Login")
 
         login = input('Qual o seu usuário? ')
         password = input('Qual a sua senha? ')
@@ -24,9 +24,9 @@ class LoginView:
 
     def printLogout(self):
         if not self.__loginController.isUserLoggedIn():
-            PrintGenerator.printHeader('Você não está conectado em nenhuma conta')
+            PrintClient.printHeader('Você não está conectado em nenhuma conta')
             return
 
         self.__loginController.logout()
 
-        PrintGenerator.printHeader('Você foi desconectado com sucesso')
+        PrintClient.printHeader('Você foi desconectado com sucesso')

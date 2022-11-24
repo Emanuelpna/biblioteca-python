@@ -1,4 +1,4 @@
-from infra.PrintGenerator import PrintGenerator
+from infra.PrintClient import PrintClient
 
 
 class LoginController:
@@ -33,7 +33,7 @@ class LoginController:
 
             return self.__user
         except StopIteration:
-            PrintGenerator.printError("Não foi possível encontrar\no usuário ou senha digitados")
+            PrintClient.printError("Não foi possível encontrar\no usuário ou senha digitados")
 
 
 

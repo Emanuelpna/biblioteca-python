@@ -1,4 +1,4 @@
-class PrintGenerator:
+class PrintClient:
     @staticmethod
     def printSpace():
         print('\n\n\n\n\n\n\n\n\n')
