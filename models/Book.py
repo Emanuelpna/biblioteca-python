@@ -1,10 +1,17 @@
 class Book:
 
-    def __init__(self, name, finePrice, author, publisher):
+    def __init__(self, codBook, name, finePrice, author, publisher):
+        self.__cod = codBook
         self.__name = name
         self.__finePrice = finePrice
         self.__author = author
         self.__publisher = publisher
+
+    def setCod(self, codBook):
+        self.__cod = codBook
+
+    def getCod(self):
+        return self.__cod
 
     def setName(self, name):
         self.__name = name

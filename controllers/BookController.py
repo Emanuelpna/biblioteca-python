@@ -18,7 +18,7 @@ class BookController:
         books = self.__databaseController.getEntries()
         mappedBooks = []
         for book in books:
-            mappedBooks.append(Book(name=book[0], author=book[1], publisher=book[2], finePrice=book[3]))
+            mappedBooks.append(Book(codBook=book[0], name=book[1], author=book[2], publisher=book[3], finePrice=book[4]))
         return mappedBooks
 
     def getBookByName(self, name):

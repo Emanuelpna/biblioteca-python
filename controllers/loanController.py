@@ -1,30 +1,27 @@
-import os
+from controllers.DatabaseController import DatabaseController
+from models.Loan import Loan
 
-# emprestimos.txt: arquivo que contêm as informações dos empréstimos realizados. 
-# (na sequência: código do empréstimo, código do cliente, código do livro e data do empréstimo). 
-# Vale lembrar que podem existir mais de uma e no máximo 3 (três) linhas de registro para um mesmo código de empréstimo.
-
-
-class loan():
-    def __init__(self, codClient, codBook, dtLoan):
-        listloan = list
-
-        #Sempre ao iniciar, ler o arquivo txt e alimentar a lista criada acima.
-
-
-        self.codloan = max(listloan) + 1 #Sempre ao instanciar um empréstimo, definir o código como sendo o maior número da lista + 1.
-        listloan.append(self.codloan) #Sempre ao instanciar um empréstimo, Acrescentar a lista de empréstimos.
+class LoanController():
+    def __init__(self):
+        self.__databaseController = DatabaseController(filePath='./data/emprestimo.txt')      
         
-        self.codClient = int(codClient)
-        self.codBook = int(codBook)
-        self.dtLoan = dtLoan
+    def createLoan(self, loan):
+        codLoan = loan.getCodLoan()
+        codClient = loan.getCodClient()
+        codBook = loan.getCodBook()
+        dtLoan = loan.getDtLoan()
 
-    def removeLoan(self, cod):       
-        listloan.remove(cod) #Remover o empréstimo da lista.
-        #Remover o empréstimo do arquivo txt.
+        self.__databaseController.saveEntry(f'{codLoan},{codClient},{codBook},{dtLoan}')
 
-    def getCodLoan(self):
-        return self.codloan
+    def listLoans(self):
+        loans = self.__databaseController.getEntries()
+        mappedLoans = []
+        for loan in loans:
+            mappedLoans.append(Loan(codLoan=loan[0], codClient=loan[1], codBook=loan[2], dtLoan=loan[3]))
+        return mappedLoans
 
-    def getCodClient(self):
-        return self.codClient
+    def getLoanByCodLoan(self, codLoan):
+        loans = self.listLoans()
+        for loan in loans:
+            if codLoan == loan.getcodLoan():
+                return loan
