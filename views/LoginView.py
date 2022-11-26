@@ -16,8 +16,8 @@ class LoginView:
     def printLogin(self):
         self.__printGenerator.printHeader("Faça seu Login")
 
-        login = input('Qual o seu usuário? ')
-        password = input('Qual a sua senha? ')
+        login = self.__printGenerator.inputData('Qual o seu usuário? ')
+        password = self.__printGenerator.inputData('Qual a sua senha? ')
 
         self.__loginController.login(login, password)
 

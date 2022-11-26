@@ -113,9 +113,9 @@ class Router:
             allPages.extend(loggedInPages)
 
         self.__printGenerator.printOptions(
-            'Escolha uma Página (digite o comando entre [colchetes] abaixo)', allPages)
+            'Escolha uma Página (digite o comando entre parênteses abaixo)', allPages)
 
-        newPage = input('> ')
+        newPage = self.__printGenerator.inputData()
 
         self.__printGenerator.printSpace()
 
