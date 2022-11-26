@@ -24,9 +24,6 @@ class DatabaseController:
         self.__fileName = tail
         self.__filePath = filePath
 
-        print(self.__fileName)
-        print(self.__filePath)
-
     def getEntries(self):
         try:
             entries = []
@@ -60,4 +57,18 @@ class DatabaseController:
         finally:
             file.close()
 
+    def deleteEntry(self, key: str):
+        try:
+            entries = self.getEntries()
+
+            with open(self.__filePath, 'w') as file:
+                for entry in entries:
+                    if key in entry:
+                        file.write(f'{",".join(entry)}\n')
+        except (OSError, IOError):
+            print('Não foi possível excluir os dados')
+        except FileNotFoundError:
+            print('Não foi possível encontrar a base de dados')
+        finally:
+            file.close()
 
