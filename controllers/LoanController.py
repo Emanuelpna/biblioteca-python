@@ -26,3 +26,9 @@ class LoanController:
         for loan in loans:
             if codLoan == loan.getCodLoan():
                 return loan
+
+    def getLoanByCodBook(self, codBook):
+        loans = self.listLoans()
+        for loan in loans:
+            if codBook == loan.getCodBook():
+                return loan

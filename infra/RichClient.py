@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from pick import pick
 from rich import print as pretty_print
 from rich.prompt import Prompt
 from rich.table import Table
@@ -34,6 +35,13 @@ class RichClient:
             tree.add(f'[italic yellow]({option.get("id")})[/] {option.get("label")}')
 
         pretty_print(tree)
+
+    @staticmethod
+    def printSelect(title, options):
+
+        option, index = pick(options, title)
+
+        return option
 
     @staticmethod
     def printError(error):

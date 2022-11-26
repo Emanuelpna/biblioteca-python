@@ -1,5 +1,9 @@
+from controllers.BookController import BookController
+from controllers.LoanController import LoanController
 from controllers.LoginController import LoginController
+from views.LoanView import LoanView
 from views.LoginView import LoginView
+from views.BookView import BookView
 
 
 class Router:
@@ -23,8 +27,12 @@ class Router:
         self.__printGenerator = printGenerator
 
         self.__loginController = LoginController(printGenerator)
+        self.__loanController = LoanController()
+        self.__bookController = BookController()
 
-        self.loginView = LoginView(self.__loginController, printGenerator)
+        self.__loginView = LoginView(self.__loginController, printGenerator)
+        self.__bookView = BookView(self.__bookController, printGenerator)
+        self.__loanView = LoanView(self.__loanController, self.__bookController, self.__loginController, printGenerator)
 
     def getCurrentPage(self):
         return self.__currentPage
@@ -47,31 +55,27 @@ class Router:
         self.__printGenerator.printSpace()
 
         if self.__currentPage == self.__pages.get('login'):
-            self.loginView.printLogin()
+            self.__loginView.printLogin()
 
         if self.__currentPage == self.__pages.get('logout'):
-            self.loginView.printLogout()
+            self.__loginView.printLogout()
+
+        if self.__currentPage == self.__pages.get('sobre'):
+            # self.sobreView...
+            pass
+
+        if self.__currentPage == self.__pages.get('livros'):
+            self.__bookView.printBooks()
 
         if self.__loginController.isUserLoggedIn():
             if self.__currentPage == self.__pages.get('emprestimos'):
-                # self.emprestimosView...
-                pass
+                self.__loanView.printLoans()
 
             if self.__currentPage == self.__pages.get('fazer-emprestimo'):
-                # self.emprestimosView...
-                pass
-
-            if self.__currentPage == self.__pages.get('livros'):
-                # self.livrosView...
-                pass
+                self.__loanView.printSelectBook()
 
             if self.__currentPage == self.__pages.get('adicionar-livro'):
-                # self.livrosView...
-                pass
-
-            if self.__currentPage == self.__pages.get('sobre'):
-                # self.sobreView...
-                pass
+                self.__bookView.printCreateBook()
 
         generalPages = [
             {
@@ -87,16 +91,16 @@ class Router:
                 'label': 'Sobre a Sistema'
             },
             {
-                'id': 'emprestimos',
-                'label': 'Ver Empréstimos'
-            },
-            {
                 'id': 'livros',
                 'label': 'Ver Livros'
             }
         ]
 
         loggedInPages = [
+            {
+                'id': 'emprestimos',
+                'label': 'Ver Empréstimos'
+            },
             {
                 'id': 'fazer-emprestimo',
                 'label': 'Fazer um empréstimo'

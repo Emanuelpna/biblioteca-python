@@ -1,6 +1,6 @@
 class Loan:
-    def __init__(self, codLoan: int, codClient: int, codBook: int, dtLoan: str):
-        self.codloan: int = codLoan
+    def __init__(self, codLoan: str, codClient: int, codBook: int, dtLoan: str):
+        self.codloan: str = codLoan
         self.codClient: int = codClient
         self.codBook: int = codBook
         self.dtLoan: str = dtLoan
