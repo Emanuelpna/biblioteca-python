@@ -1,5 +1,9 @@
 class PrintClient:
     @staticmethod
+    def inputData(message=''):
+        return input(f'{message}\n>')
+
+    @staticmethod
     def printSpace():
         print('\n\n\n\n\n\n\n\n\n')
 
@@ -19,7 +23,7 @@ class PrintClient:
         print(title)
 
         for option in options:
-            print(f'   - [{option.get("id")}] {option.get("label")}')
+            print(f'   - ({option.get("id")}) {option.get("label")}')
 
         print('')
         print('==========================')
@@ -33,7 +37,7 @@ class PrintClient:
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
     @staticmethod
-    def printTable():
+    def printTable(tableOptions):
         print(rf"""
             +----------------------------------+---------+------------------------+----------------+
             |               Col1               |  Col2   |          Col3          | Numeric Column |
