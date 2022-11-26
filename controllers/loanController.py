@@ -1,10 +1,11 @@
 from controllers.DatabaseController import DatabaseController
 from models.Loan import Loan
 
-class LoanController():
+
+class LoanController:
     def __init__(self):
-        self.__databaseController = DatabaseController(filePath='./data/emprestimo.txt')      
-        
+        self.__databaseController = DatabaseController(filePath='./data/emprestimo.txt')
+
     def createLoan(self, loan):
         codLoan = loan.getCodLoan()
         codClient = loan.getCodClient()
@@ -23,5 +24,5 @@ class LoanController():
     def getLoanByCodLoan(self, codLoan):
         loans = self.listLoans()
         for loan in loans:
-            if codLoan == loan.getcodLoan():
+            if codLoan == loan.getCodLoan():
                 return loan
