@@ -28,3 +28,11 @@ class Loan:
 
     def getDtLoan(self):
         return self.dtLoan
+
+    def toList(self):
+        codLoan = self.getCodLoan()
+        codClient = self.getCodClient()
+        codBook = self.getCodBook()
+        dtLoan = self.getDtLoan()
+
+        return [codLoan, codClient, codBook, dtLoan]

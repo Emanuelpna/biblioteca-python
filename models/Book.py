@@ -36,3 +36,12 @@ class Book:
 
     def getPublisher(self):
         return self.__publisher
+
+    def toList(self):
+        codeBook = self.getCod()
+        name = self.getName()
+        author = self.getAuthor()
+        publisher = self.getPublisher()
+        finePrice = self.getFinePrice()
+
+        return [codeBook, name, author, publisher, finePrice]

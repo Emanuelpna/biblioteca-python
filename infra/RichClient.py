@@ -45,15 +45,12 @@ class RichClient:
 
     @staticmethod
     def printTable(tableOptions: 'TableOptions'):
-        user_renderables = [Panel(f"[b]{user[0]}[/b]\n[yellow]{user[1]}", expand=True) for user in tableOptions.getData()]
-        pretty_print(Columns(user_renderables))
-
         table = Table(title=tableOptions.getTitle())
 
         for column in tableOptions.getColumns():
             table.add_column(column, style="cyan", no_wrap=True)
 
         for row in tableOptions.getData():
-            table.add_row(*row)
+            table.add_row(*row.toList())
 
         pretty_print(table)
