@@ -14,6 +14,10 @@ class PrintClient:
         print('\n\n\n\n\n\n\n\n\n')
 
     @staticmethod
+    def printText(text):
+        print(text)
+
+    @staticmethod
     def printHeader(title):
         print("**************************")
 
@@ -46,11 +50,22 @@ class PrintClient:
             print(f'   - ({index}) {option}')
             index += 1
 
-        choosedIndex = int(PrintClient.inputData('Escolha o número de uma das Opções acima'))
+        choosedIndex = int(PrintClient.inputData(
+            'Escolha o número de uma das Opções acima'))
 
         print('==========================')
 
         return options[choosedIndex]
+
+    @staticmethod
+    def printCards(title, cardsData):
+        print(title)
+
+        for card in cardsData:
+            print(f'''
+                | {card.get('name')} |
+                | {card.get('ocupation')} |
+            ''')
 
     @staticmethod
     def printError(error):

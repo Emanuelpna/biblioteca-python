@@ -1,5 +1,6 @@
 from pick import pick
 from rich import print as pretty_print
+from rich.columns import Columns
 from rich.prompt import Prompt
 from rich.table import Table
 from rich.panel import Panel
@@ -25,6 +26,10 @@ class RichClient:
         print('\n\n\n\n\n\n\n\n\n')
 
     @staticmethod
+    def printText(text):
+        pretty_print(text)
+
+    @staticmethod
     def printHeader(title):
         pretty_print(Panel(title, expand=True))
 
@@ -40,10 +45,21 @@ class RichClient:
 
     @staticmethod
     def printSelect(title, options):
-
         option, index = pick(options, title)
 
         return option
+
+    @staticmethod
+    def printCards(title, cardsData):
+        pretty_print(Panel(title, title_align='center'))
+
+        user_renderables = [
+            Panel(
+                f"[b]{card.get('name')}[/b]\n[yellow]{card.get('ocupation')}", expand=True
+            ) for card in cardsData
+        ]
+
+        pretty_print(Columns(user_renderables))
 
     @staticmethod
     def printError(error):
