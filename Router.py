@@ -32,7 +32,8 @@ class Router:
 
         self.__loginView = LoginView(self.__loginController, printGenerator)
         self.__bookView = BookView(self.__bookController, printGenerator)
-        self.__loanView = LoanView(self.__loanController, self.__bookController, self.__loginController, printGenerator)
+        self.__loanView = LoanView(
+            self.__loanController, self.__bookController, self.__loginController, printGenerator)
 
     def getCurrentPage(self):
         return self.__currentPage
@@ -52,20 +53,11 @@ class Router:
         self.renderPage()
 
     def renderPage(self):
-        self.__printGenerator.printSpace()
-
         if self.__currentPage == self.__pages.get('login'):
             self.__loginView.printLogin()
 
         if self.__currentPage == self.__pages.get('logout'):
             self.__loginView.printLogout()
-
-        if self.__currentPage == self.__pages.get('sobre'):
-            # self.sobreView...
-            pass
-
-        if self.__currentPage == self.__pages.get('livros'):
-            self.__bookView.printBooks()
 
         if self.__loginController.isUserLoggedIn():
             if self.__currentPage == self.__pages.get('emprestimos'):
@@ -74,8 +66,15 @@ class Router:
             if self.__currentPage == self.__pages.get('fazer-emprestimo'):
                 self.__loanView.printNewLoan()
 
+            if self.__currentPage == self.__pages.get('livros'):
+                self.__bookView.printBooks()
+
             if self.__currentPage == self.__pages.get('adicionar-livro'):
                 self.__bookView.printCreateBook()
+
+            if self.__currentPage == self.__pages.get('sobre'):
+                # self.sobreView...
+                pass
 
         generalPages = [
             {
@@ -85,18 +84,18 @@ class Router:
             {
                 'id': 'logout',
                 'label': 'Deslogar do sistema'
-            },
-            {
-                'id': 'sobre',
-                'label': 'Sobre a Sistema'
-            },
-            {
-                'id': 'livros',
-                'label': 'Ver Livros'
             }
         ]
 
         loggedInPages = [
+            {
+                'id': 'livros',
+                'label': 'Ver Livros'
+            },
+            {
+                'id': 'adicionar-livro',
+                'label': 'Adicionar um Livro ao sistema'
+            },
             {
                 'id': 'emprestimos',
                 'label': 'Ver Empréstimos'
@@ -106,9 +105,9 @@ class Router:
                 'label': 'Fazer um empréstimo'
             },
             {
-                'id': 'adicionar-livro',
-                'label': 'Adicionar um Livro ao sistema'
-            }
+                'id': 'sobre',
+                'label': 'Sobre a Sistema'
+            },
         ]
 
         allPages = generalPages
