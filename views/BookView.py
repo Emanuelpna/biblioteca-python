@@ -1,5 +1,6 @@
 import uuid
 
+from infra.CodeGenerator import CodeGenerator
 from infra.TableOptions import TableOptions
 from models.Book import Book
 from typing import TYPE_CHECKING
@@ -22,7 +23,7 @@ class BookView:
             "Digite a Editora do livro")
         bookPrice = float(self.__printGenerator.inputData(
             "Digite o preço do multa do empréstimo do livro"))
-        codBook = f'Book-{uuid.uuid4()}'
+        codBook = f'book-{CodeGenerator.getUniqueCode()}'
 
         book = Book(codBook, bookName, bookPrice, bookAuthor, bookPublisher)
 

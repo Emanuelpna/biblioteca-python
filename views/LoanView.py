@@ -1,6 +1,7 @@
 import uuid
 from datetime import datetime
 
+from infra.CodeGenerator import CodeGenerator
 from models.Loan import Loan
 
 from infra.TableOptions import TableOptions
@@ -40,7 +41,7 @@ class LoanView:
         codClient = user.getCodeUser()
         book = self.__bookController.getBookByName(bookName)
         loanDate = datetime.now().strftime("%d/%m/%Y")
-        codLoan = f'Loan-{uuid.uuid4()}'
+        codLoan = f'loan-{CodeGenerator.getUniqueCode()}'
 
         loan = Loan(codLoan, codClient, book.getCod(), loanDate)
 
@@ -68,7 +69,7 @@ class LoanView:
 
         loansTable = TableOptions(
             "Livros emprestados",
-            ["Código", "Cliente", "Nome do livro", "Data empréstimo"],
+            ["Código", "Cliente", "Nome do livro", "Data Empréstimo"],
             loansWithBookName
         )
 
