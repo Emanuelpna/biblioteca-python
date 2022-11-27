@@ -4,7 +4,6 @@ from controllers.DatabaseController import DatabaseController
 
 
 class BookController:
-
     def __init__(self):
         self.__databaseController = DatabaseController(filePath='./data/livros.txt')
 

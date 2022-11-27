@@ -1,6 +1,7 @@
 from controllers.BookController import BookController
 from controllers.LoanController import LoanController
 from controllers.LoginController import LoginController
+from views.AboutView import AboutView
 from views.LoanView import LoanView
 from views.LoginView import LoginView
 from views.BookView import BookView
@@ -30,10 +31,12 @@ class Router:
         self.__loanController = LoanController()
         self.__bookController = BookController()
 
+        self.__aboutView = AboutView(printGenerator)
         self.__loginView = LoginView(self.__loginController, printGenerator)
         self.__bookView = BookView(self.__bookController, printGenerator)
         self.__loanView = LoanView(
-            self.__loanController, self.__bookController, self.__loginController, printGenerator)
+            self.__loanController, self.__bookController, self.__loginController, printGenerator
+        )
 
     def getCurrentPage(self):
         return self.__currentPage
@@ -73,8 +76,7 @@ class Router:
                 self.__bookView.printCreateBook()
 
             if self.__currentPage == self.__pages.get('sobre'):
-                # self.sobreView...
-                pass
+                self.__aboutView.printAbout()
 
         generalPages = [
             {

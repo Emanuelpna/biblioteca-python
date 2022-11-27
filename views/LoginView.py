@@ -21,8 +21,7 @@ class LoginView:
 
     def printLogout(self):
         if not self.__loginController.isUserLoggedIn():
-            self.__printGenerator.printHeader(
-                'Você não está conectado em nenhuma conta')
+            self.__printGenerator.printHeader('Você não está conectado em nenhuma conta')
             return
 
         self.__loginController.logout()
