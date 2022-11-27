@@ -1,6 +1,7 @@
 from Router import Router
-from infra.RichClient import RichClient
+
 from infra.PrintClient import PrintClient
+
 
 if __name__ == '__main__':
     print(r"""
@@ -18,8 +19,10 @@ if __name__ == '__main__':
     printGenerator = None
 
     try:
+        from infra.RichClient import RichClient
+
         printGenerator = RichClient()
-    except ImportError:
+    except ModuleNotFoundError:
         printGenerator = PrintClient()
 
     routerController = Router(printGenerator)
