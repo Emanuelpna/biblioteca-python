@@ -72,7 +72,7 @@ class Router:
                 self.__loanView.printLoans()
 
             if self.__currentPage == self.__pages.get('fazer-emprestimo'):
-                self.__loanView.printSelectBook()
+                self.__loanView.printNewLoan()
 
             if self.__currentPage == self.__pages.get('adicionar-livro'):
                 self.__bookView.printCreateBook()

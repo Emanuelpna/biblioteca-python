@@ -1,5 +1,6 @@
-from controllers.DatabaseController import DatabaseController
 from models.Book import Book
+
+from controllers.DatabaseController import DatabaseController
 
 
 class BookController:
@@ -30,4 +31,10 @@ class BookController:
         books = self.listBooks()
         for book in books:
             if name == book.getName():
+                return book
+
+    def getBookByCode(self, code):
+        books = self.listBooks()
+        for book in books:
+            if code == book.getCod():
                 return book

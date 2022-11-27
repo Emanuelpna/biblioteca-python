@@ -1,5 +1,6 @@
-from controllers.DatabaseController import DatabaseController
 from models.Loan import Loan
+
+from controllers.DatabaseController import DatabaseController
 
 
 class LoanController:
