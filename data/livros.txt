@@ -1,5 +1,5 @@
-123,Cidades de Papel,John Green,intrínseca,4.15
-122,A Companhia Negra,Glen Cook,Record,4.5
-121,A Batalha do Apocalipse,Eduardo Spohr,Versus Editora,4.00
-120,Analysis Patterns: Reusable Object Models,Martin Fowler,Addison-Wesley,5.15
-119,Refactoring,Jay Fields-Shane Harvie-Martin Fowler with Kent Beck,Ruby Edition,5.00
+book-b7f7306c,Cidades de Papel,John Green,Intrínseca,4.15
+book-0717ab03,A Companhia Negra,Glen Cook,Record,4.5
+book-2fc440be,A Batalha do Apocalipse,Eduardo Spohr,Versus Editora,4.00
+book-327cafa9,Analysis Patterns: Reusable Object Models,Martin Fowler,Addison-Wesley,5.15
+book-07d07ec0,Refactoring,Jay Fields-Shane Harvie & Martin Fowler & Kent Beck,Ruby Edition,5.00
