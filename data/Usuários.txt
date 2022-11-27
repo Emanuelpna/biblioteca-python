@@ -1,0 +1,3 @@
+01,José,LIBRARIAN,Admin,Admin
+10,Felipe,CUSTOMER,Felp1,01@23
+02,Emanuel,CUSTOMER,@25LJ,L@03$
