@@ -39,7 +39,7 @@ class LoanView:
 
         codClient = user.getCodeUser()
         book = self.__bookController.getBookByName(bookName)
-        loanDate = datetime.now().strftime("%m/%d/%Y")
+        loanDate = datetime.now().strftime("%d/%m/%Y")
         codLoan = f'Loan-{uuid.uuid4()}'
 
         loan = Loan(codLoan, codClient, book.getCod(), loanDate)
