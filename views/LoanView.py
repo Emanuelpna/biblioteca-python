@@ -53,16 +53,23 @@ class LoanView:
 
         loansWithBookName = []
         for loan in loans:
-            book = self.__bookController.getBookByCode(loan.getCodBook())
-            loansWithBookName.append(
-                Loan(
-                    codLoan=loan.getCodLoan(),
-                    codBook=book.getName(),
-                    codClient=loan.getCodClient(),
-                    dtLoan=loan.getDtLoan()
-                )
-            )
+            user = self.__loginController.getUserLoggedIn()
 
-        loansTable = TableOptions("Livros emprestados", [
-                                  "Código", "Cliente", "Nome do livro", "Data empréstimo"], loansWithBookName)
+            if user.getCodeUser() == loan.getCodClient():
+                book = self.__bookController.getBookByCode(loan.getCodBook())
+                loansWithBookName.append(
+                    Loan(
+                        codLoan=loan.getCodLoan(),
+                        codBook=book.getName(),
+                        codClient=loan.getCodClient(),
+                        dtLoan=loan.getDtLoan()
+                    )
+                )
+
+        loansTable = TableOptions(
+            "Livros emprestados",
+            ["Código", "Cliente", "Nome do livro", "Data empréstimo"],
+            loansWithBookName
+        )
+
         self.__printGenerator.printTable(loansTable)
