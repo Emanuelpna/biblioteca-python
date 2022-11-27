@@ -1,3 +1,9 @@
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from infra.TableOptions import TableOptions
+
+
 class PrintClient:
     @staticmethod
     def inputData(message=''):
@@ -29,6 +35,24 @@ class PrintClient:
         print('==========================')
 
     @staticmethod
+    def printSelect(title, options):
+        print('==========================')
+        print('')
+
+        print(title)
+
+        index = 0
+        for option in options:
+            print(f'   - ({index}) {option}')
+            index += 1
+
+        choosedIndex = int(PrintClient.inputData('Escolha o número de uma das Opções acima'))
+
+        print('==========================')
+
+        return options[choosedIndex]
+
+    @staticmethod
     def printError(error):
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!")
         print('')
@@ -37,13 +61,13 @@ class PrintClient:
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
     @staticmethod
-    def printTable(tableOptions):
-        print(rf"""
-            +----------------------------------+---------+------------------------+----------------+
-            |               Col1               |  Col2   |          Col3          | Numeric Column |
-            +----------------------------------+---------+------------------------+----------------+
-            | Value 1                          | Value 2 | 123                    |           10.0 |
-            | Separate                         | cols    | with a tab or 4 spaces |       -2,027.1 |
-            | This is a row with only one cell |         |                        |                |
-            +----------------------------------+---------+------------------------+----------------+
-        """)
+    def printTable(tableOptions: 'TableOptions'):
+        print(tableOptions.getTitle())
+        print('')
+
+        print(", ".join(tableOptions.getColumns()))
+        print('---------------')
+        for dataRow in tableOptions.getColumns():
+            print(", ".join(dataRow.toList()))
+
+        print('')
